@@ -1,5 +1,12 @@
 # Liveviewtest
 
+
+Testing out phoenix live view. This was a terrily named repo since all the live view modules also have that in the name.
+
+Oops.
+
+# Boilerplate
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

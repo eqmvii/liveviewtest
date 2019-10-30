@@ -52,7 +52,8 @@ config :liveviewtest, LiveviewtestWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/liveviewtest_web/views/.*(ex)$},
-      ~r{lib/liveviewtest_web/templates/.*(eex)$}
+      ~r{lib/liveviewtest_web/templates/.*(eex)$},
+      ~r{lib/liveviewtest_web/live/.*(ex)$}
     ]
   ]
 
