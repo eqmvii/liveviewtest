@@ -1,0 +1,6 @@
+<h1>Counter Demo</h1>
+<p>Live component rendered from inside of a standard eex template:</p>
+<hr />
+<%= Phoenix.LiveView.live_render(@conn, LiveviewtestWeb.ThermostatLive, session: %{user_id: "dummydata"}) %>
+<hr />
+<p>Footer from a standard template</p>
