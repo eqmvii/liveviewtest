@@ -1,0 +1,3 @@
+<%= Phoenix.LiveView.live_render(@conn, LiveviewtestWeb.FormDemoLive, session: %{user_id: "dummydata"}) %>
+<hr />
+<p>Fake Footer from a standard template</p>

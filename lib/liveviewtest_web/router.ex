@@ -20,6 +20,7 @@ defmodule LiveviewtestWeb.Router do
     get "/", PageController, :index
     get "/livetest", PageController, :live
     get "/counterdemo", PageController, :counterdemo
+    get "/formdemo", PageController, :formdemo
   end
 
   scope "/", LiveviewtestWeb do

@@ -10,6 +10,10 @@ defmodule LiveviewtestWeb.PageController do
     render(conn, "counterdemo.html")
   end
 
+  def formdemo(conn, _params) do
+    render(conn, "formdemo.html")
+  end
+
 def live(conn, _params) do
     live_render(conn, LiveviewtestWeb.ThermostatLive, session: %{
       id: 1,
