@@ -5,7 +5,7 @@
   <%= label f, :css, "Type CSS" %>
   <%= textarea f, :css, style: "height: 120px;", value: @css %>
   <%= label f, :js, "Type JS" %>
-  <%= textarea f, :js, style: "height: 80px;", value: @js, phx_hook: "JavaScriptLoader" %>
+  <%= textarea f, :js, style: "height: 80px;", value: @js, phx_hook: "JavaScriptExecuter" %>
 </form>
 <h3>Rendered HTML Output:</h3>
 <p>
@@ -14,5 +14,4 @@
 <style>
   <%= raw(@css) %>
 </style>
-<div id="jsroot"></div>
 

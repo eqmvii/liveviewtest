@@ -49,18 +49,19 @@ Hooks.TestHook = {
 // For the JS editor to work, this needs to be a hook.
 // Just editing innerHTML won't execute a script tag, and that's
 // how LiveView is updating the DOM.
-Hooks.JavaScriptLoader = {
+Hooks.JavaScriptExecuter = {
   mounted() {
     console.log('js element mounted');
     console.log(this.el.value);
   },
   updated() {
-    console.log('js element updated');
-    console.log(this.el.value);
-    let target = document.querySelector('#jsroot');
-    let newScript = document.createElement('script');
-    newScript.innerHTML = this.el.value;
-    target.appendChild(newScript);
+    try {
+      eval(this.el.value); // eval is spooky don't ever actually do this!
+      console.log(`executed: ${this.el.value}`);
+    }
+    catch(error) {
+      console.log('cannot run this as JS (yet...)');
+    };
   }
 }
 
