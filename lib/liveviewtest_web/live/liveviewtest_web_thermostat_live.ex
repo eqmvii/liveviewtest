@@ -5,14 +5,16 @@ defmodule LiveviewtestWeb.ThermostatLive do
   Whenever a socket's assigns change, render/1 is automatically called
   """
   def render(assigns) do
-    ~L"""
-    <p>Current temperature: <%= @temperature %><p>
-    <p>
-      <button phx-click="inc_temperature">Increase Temp By 1000</button>
-      <button phx-click="dec_temperature">Decrease Temp By 1000</button>
-    </p>
-    <p>Random temperature increases: <%= @i %></p>
-    """
+    Phoenix.View.render(LiveviewtestWeb.PageView, "lvtest.html", assigns)
+    # alternatively, can render a live sigil like this:
+    # ~L"""
+    # <p>Current temperature: <%= @temperature %><p>
+    # <p>
+    #   <button phx-click="inc_temperature">Increase Temp By 1000</button>
+    #   <button phx-click="dec_temperature">Decrease Temp By 1000</button>
+    # </p>
+    # <p>Random temperature increases: <%= @i %></p>
+    # """
   end
 
   @doc """
@@ -27,7 +29,7 @@ defmodule LiveviewtestWeb.ThermostatLive do
 
   def handle_info(:set_interval_update, socket) do
     IO.puts "handle_info called"
-    new_temp = socket.assigns.temperature + :rand.uniform(5)
+    new_temp = socket.assigns.temperature + :rand.uniform(3)
     {:noreply, assign(socket, temperature: new_temp, i: socket.assigns.i + 1)}
   end
 
