@@ -1,7 +1,7 @@
 <h1>HTML Preview Component<h1>
 <%= f = form_for :canvasform, "#", [phx_change: :change, phx_submit: :save] %>
   <%= label f, :html, "Type html" %>
-  <%= textarea f, :html, style: "height: 80px", value: @html %>
+<%= textarea f, :html, style: "height: 80px", value: @html, phx_hook: "TestHook" %>
   <%= label f, :css, "Type CSS" %>
   <%= textarea f, :css, style: "height: 120px", value: @css %>
 </form>

@@ -20,6 +20,34 @@ import "phoenix_html"
 import {Socket} from "phoenix";
 import LiveSocket from "phoenix_live_view";
 
-window.liveSocket = new LiveSocket("/live", Socket)
+let Hooks = {};
+
+// one of each hook for experimentation!
+Hooks.TestHook = {
+  mounted() {
+    console.log('element mounted');
+    console.log(this.el.value);
+    },
+    updated() {
+      console.log('element updated');
+      console.log(this.el.value);
+    },
+    destroyed() {
+      console.log('element destroyed!');
+      console.log(this.el.value);
+    },
+    disconnected() {
+      console.log('element disconnected');
+      console.log(this.el.value);
+    },
+    reconnected() {
+      console.log('element reconnected');
+      console.log(this.el.value);
+    }
+  };
+
+window.liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks})
 console.log(liveSocket);
 window.liveSocket.connect();
+
+
