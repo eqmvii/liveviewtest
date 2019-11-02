@@ -12,7 +12,9 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><<a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a>></li>
+            <li><%= link "Form Demo", to: Routes.page_path(@conn, :formdemo) %></li>
+            <li><%= link "Counter Demo", to: Routes.page_path(@conn, :counterdemo) %></li>
+            <li><%= link "Live Render Demo", to: Routes.page_path(@conn, :livetest) %></li>
           </ul>
         </nav>
         <a href="http://phoenixframework.org/" class="phx-logo">

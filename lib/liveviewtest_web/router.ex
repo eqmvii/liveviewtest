@@ -18,7 +18,7 @@ defmodule LiveviewtestWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/livetest", PageController, :live
+    get "/livetest", PageController, :livetest
     get "/counterdemo", PageController, :counterdemo
     get "/formdemo", PageController, :formdemo
   end
