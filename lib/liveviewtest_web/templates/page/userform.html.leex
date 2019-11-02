@@ -1,9 +1,11 @@
 <h1>HTML Preview Component<h1>
 <%= f = form_for :canvasform, "#", [phx_change: :change, phx_submit: :save] %>
   <%= label f, :html, "Type html" %>
-<%= textarea f, :html, style: "height: 80px", value: @html, phx_hook: "TestHook" %>
+  <%= textarea f, :html, style: "height: 80px;", value: @html, phx_hook: "TestHook" %>
   <%= label f, :css, "Type CSS" %>
-  <%= textarea f, :css, style: "height: 120px", value: @css %>
+  <%= textarea f, :css, style: "height: 120px;", value: @css %>
+  <%= label f, :js, "Type JS" %>
+  <%= textarea f, :js, style: "height: 80px;", value: @js, phx_hook: "JavaScriptLoader" %>
 </form>
 <h3>Rendered HTML Output:</h3>
 <p>
@@ -12,4 +14,5 @@
 <style>
   <%= raw(@css) %>
 </style>
+<div id="jsroot"></div>
 

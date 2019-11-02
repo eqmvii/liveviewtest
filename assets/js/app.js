@@ -46,6 +46,24 @@ Hooks.TestHook = {
     }
   };
 
+// For the JS editor to work, this needs to be a hook.
+// Just editing innerHTML won't execute a script tag, and that's
+// how LiveView is updating the DOM.
+Hooks.JavaScriptLoader = {
+  mounted() {
+    console.log('js element mounted');
+    console.log(this.el.value);
+  },
+  updated() {
+    console.log('js element updated');
+    console.log(this.el.value);
+    let target = document.querySelector('#jsroot');
+    let newScript = document.createElement('script');
+    newScript.innerHTML = this.el.value;
+    target.appendChild(newScript);
+  }
+}
+
 window.liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks})
 console.log(liveSocket);
 window.liveSocket.connect();

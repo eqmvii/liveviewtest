@@ -14,13 +14,18 @@ defmodule LiveviewtestWeb.FormDemoLive do
   def mount(session_data, socket) do
     IO.puts "mount called. Connected: #{connected?(socket)}"
 
-    {:ok, assign(socket, html: "<p class='red'>\n  <strong>Hello, World.</strong>\n</p>", css: ".red {\n  color: red;\n}\n\n.blue {\n color: blue;\n}")}
+    {:ok,
+      assign(socket,
+            html: "<p class='red'>\n  <strong>Hello, World.</strong>\n</p>",
+            css: ".red {\n  color: red;\n}\n\n.blue {\n color: blue;\n}",
+            js: "")
+      }
   end
 
   def handle_event("change", %{"canvasform" => form_data}, socket) do
     IO.inspect form_data
 
-    {:noreply, assign(socket, html: form_data["html"], css: form_data["css"])}
+    {:noreply, assign(socket, html: form_data["html"], css: form_data["css"], js: form_data["js"])}
   end
 end
 
