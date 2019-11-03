@@ -3,21 +3,26 @@ defmodule LiveviewtestWeb.FormDemoLive do
 
   defstruct html: "",
             css: "",
-            js: ""
+            js: "",
+            show_html: false,
+            show_css: false,
+            show_js: false
 
-  @doc """
-  Whenever a socket's assigns change, render/1 is automatically called
-  """
+  #
+  # Lifecycle Methods
+  #
+
   def render(assigns) do
-    Phoenix.View.render(LiveviewtestWeb.PageView, "userform.html", assigns)
+    Phoenix.View.render(LiveviewtestWeb.PageView, "htmlpreview.html", assigns)
   end
 
-  @doc """
-  Called when the page first loads
-  """
   def mount(session_data, socket) do
     {:ok, assign(socket, state: initial_state())}
   end
+
+  #
+  # Event Listeners
+  #
 
   def handle_event("change", %{"canvasform" => form_data}, %{assigns: %{state: state}} = socket) do
     state =
@@ -29,11 +34,30 @@ defmodule LiveviewtestWeb.FormDemoLive do
     {:noreply, assign(socket, state: state)}
   end
 
+  def handle_event("toggle", %{"value" => value}, %{assigns: %{state: state}} = socket) do
+    state =
+      case value do
+        "html" -> Map.put(state, :show_html, !state.show_html)
+        "css" -> Map.put(state, :show_css, !state.show_css)
+        "js" -> Map.put(state, :show_js, !state.show_js)
+        _ -> state
+      end
+
+    {:noreply, assign(socket, state: state)}
+  end
+
+  #
+  # Private Methods
+  #
+
   defp initial_state() do
     %__MODULE__{
       html: "<p class='red'>\n  <strong>Hello, World.</strong>\n</p>",
       css: ".red {\n  color: red;\n}\n\n.blue {\n color: blue;\n}",
-      js: ""
+      js: "",
+      show_html: true,
+      show_css: true,
+      show_js: false
     }
   end
 end

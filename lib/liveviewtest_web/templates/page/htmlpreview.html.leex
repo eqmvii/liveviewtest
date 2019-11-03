@@ -1,0 +1,37 @@
+<h1>HTML Preview Component<h1>
+
+<button phx-click="toggle" value="html">Toggle HTML</button>
+<button phx-click="toggle" value="css">Toggle CSS</button>
+<button phx-click="toggle" value="js">Toggle JS</button>
+
+<%= f = form_for :canvasform, "#", [phx_change: :change, phx_submit: :save] %>
+  <%= label f, :html, "Type html", class: if @state.show_html, do: "show", else: "hide" %>
+  <%= textarea f, :html,
+        style: "height: 80px;",
+        value: @state.html,
+        phx_hook: "TestHook",
+        class: if @state.show_html, do: "show", else: "hide" %>
+
+  <%= label f, :css, "Type CSS", class: if @state.show_css, do: "show", else: "hide" %>
+  <%= textarea f, :css,
+        style: "height: 120px;",
+        value: @state.css,
+        class: if @state.show_css, do: "show", else: "hide" %>
+
+  <%= label f, :js, "Type JS", class: if @state.show_js, do: "show", else: "hide" %>
+  <%= textarea f, :js,
+        style: "height: 80px;",
+        value: @state.js,
+        phx_hook: "JavaScriptExecuter",
+        class: if @state.show_js, do: "show", else: "hide" %>
+</form>
+
+<h3>Rendered HTML Output:</h3>
+
+<p>
+  <%= raw(@state.html) %>
+</p>
+<style>
+  <%= raw(@state.css) %>
+</style>
+
