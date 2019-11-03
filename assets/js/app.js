@@ -20,6 +20,8 @@ import "phoenix_html"
 import {Socket} from "phoenix";
 import LiveSocket from "phoenix_live_view";
 
+let currentJs = '';
+
 let Hooks = {};
 
 // one of each hook for experimentation!
@@ -46,6 +48,8 @@ Hooks.TestHook = {
     }
   };
 
+
+
 // For the JS editor to work, this needs to be a hook.
 // Just editing innerHTML won't execute a script tag, and that's
 // how LiveView is updating the DOM.
@@ -55,7 +59,12 @@ Hooks.JavaScriptExecuter = {
     console.log(this.el.value);
   },
   updated() {
+    // updated hook is run whenever the form changes,
+    // only try to execute the JS if the JS was changed
+    if (currentJs == this.el.value) { return; }
+
     try {
+      currentJs = this.el.value;
       eval(this.el.value); // eval is spooky don't ever actually do this!
       console.log(`executed: ${this.el.value}`);
     }
