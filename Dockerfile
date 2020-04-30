@@ -1,31 +1,34 @@
-# Dockerfile v 0.0.0
+# Dockerfile v 0.0.2
 # Not designed for live development, just a test in containerizing the app at all
+# Working better, just a few TODOS:
+# * Think through node/npm items below
+# * handle: origin checks slightly better... maybe?
 
 # Not the latest, but the version on my laptop, and not slim, but a starting point
 FROM elixir:1.8.2
-USER root
 
-# Unchanged from demo
-# WORKDIR /usr/src/app
+ENV MIX_ENV=prod
+
+# Install hex and rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+RUN mkdir /app
+WORKDIR /app
 COPY . .
-
-# starting with deps.get errors out without this:
-# Could not find Hex, which is needed to build dependency :phoenix
-RUN mix local.hex --force
 
 # get phoenix dependencies
 RUN mix deps.get
+RUN mix deps.compile
+RUN mix phx.digest
 
-# TODO: Mix compile now?
-
+# TODO ERIC: Figure out npm, and/or abandon npm at the container phase
 # Taken from https://github.com/nodesource/distributions/blob/master/README.md
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
-RUN apt-get install -y nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
+# RUN apt-get install -y nodejs
 
 # this is dying, can we get a container built up until now and play around?
 # RUN cd assets && npm install
 
 EXPOSE 4000
 CMD [ "mix", "phx.server" ]
-
-COPY . .
