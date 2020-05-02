@@ -7,15 +7,19 @@ services:
     - "8000:4000"
     volumes:
     - .:/app
+  redis:
+    image: "redis:alpine"
 
 # TODO IDEAS: Put nginx in front of it? Add postgres?
 
-    #########
-    # Usage #
-    #########
+#########
+# Usage #
+#########
 
-    # docker-compose up -d
+# docker-compose up -d
 
-    # docker-compose down
+# docker-compose down
 
-    # docker logs --follow liveviewtest_webapp_1
+# docker logs --follow liveviewtest_webapp_1
+
+# docker exec -it liveviewtest_webapp_1 bash

@@ -3,6 +3,13 @@ defmodule LiveviewtestWeb.PageController do
   import Phoenix.LiveView.Controller
 
   def index(conn, _params) do
+
+    # Testing Redix connection by randomly setting/getting on page load
+    IO.puts "\n\n"
+    Redix.command(:redix, ["SET", "testkey", "testval"])
+    IO.inspect Redix.command(:redix, ["GET", "testkey"]) # name redix given when the child process was started
+    IO.puts "\n"
+
     render(conn, "index.html")
   end
 

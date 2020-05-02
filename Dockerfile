@@ -63,4 +63,16 @@ CMD [ "mix", "phx.server" ]
 # log the contianer
 # docker logs --follow lvtest
 
+###########
+# Utility #
+###########
 
+#### Bash In (docker-compose version) #
+
+# docker exec -it liveviewtest_webapp_1 bash
+
+##### Run a container with sleep to poke around if the app breaks
+
+# docker run --name lvtest -p 8000:4000 --mount type=bind,source="$(pwd)",target=/app lvtest0.4 sleep 100000
+# docker ps
+# docker exec -it [CONTAINERID] bash

@@ -9,7 +9,10 @@ defmodule Liveviewtest.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      LiveviewtestWeb.Endpoint
+      LiveviewtestWeb.Endpoint,
+      # Redix connection useus 'host' and 'port' vs. a uri for a one-off connection like:
+      # {:ok, conn} = Redix.start_link("redis://redis:6379/3", name: :redix)
+      {Redix, host: "redis", port: 6379, name: :redix}
       # Starts a worker by calling: Liveviewtest.Worker.start_link(arg)
       # {Liveviewtest.Worker, arg},
     ]
