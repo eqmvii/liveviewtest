@@ -55,12 +55,12 @@ CMD [ "mix", "phx.server" ]
 # docker build --tag [TAGNAME] .
 
 # Run the container, bind mounting to PWD, executing bash for persistance instead of the default mix phx.server
-# docker run -d -p 8000:4000 --mount type=bind,source="$(pwd)",target=/app [TAGNAME]
+# docker run -d --name lvtest -p 8000:4000 --mount type=bind,source="$(pwd)",target=/app [TAGNAME]
 
 # See the container running
 # docker ps
 
 # log the contianer
-# docker logs --follow [CONTAINER ID]
+# docker logs --follow lvtest
 
 
