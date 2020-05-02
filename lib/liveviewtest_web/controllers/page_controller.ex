@@ -4,10 +4,14 @@ defmodule LiveviewtestWeb.PageController do
 
   def index(conn, _params) do
 
-    # Testing Redix connection by randomly setting/getting on page load
+    # redis page view counter proof-of-concept
     IO.puts "\n\n"
-    Redix.command(:redix, ["SET", "testkey", "testval"])
-    IO.inspect Redix.command(:redix, ["GET", "testkey"]) # name redix given when the child process was started
+    case Redix.command(:redix, ["EXISTS", "pageviews"]) do
+      {:ok, 0} -> Redix.command(:redix, ["SET", "pageviews", 1])
+      {:ok, 1} -> Redix.command(:redix, ["INCR", "pageviews"])
+    end
+
+    IO.inspect Redix.command(:redix, ["GET", "pageviews"])
     IO.puts "\n"
 
     render(conn, "index.html")

@@ -1,10 +1,17 @@
 version: '2.0'
 
+# Proof of principle: two copies of the app running on different ports, connected to the same redis store
 services:
   webapp:
     image: lvtest0.4
     ports:
     - "8000:4000"
+    volumes:
+    - .:/app
+  bizarro_webapp:
+    image: lvtest0.4
+    ports:
+    - "8001:4000"
     volumes:
     - .:/app
   redis:
