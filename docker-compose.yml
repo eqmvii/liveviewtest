@@ -1,13 +1,21 @@
 version: '2.0'
 
-# Builds the image from the local docker file
-# exposes app's port 4000 as local host 8000
-# and mounts pwd to /app in the container
-
 services:
-  web:
-    build: .
+  webapp:
+    image: lvtest0.4
     ports:
     - "8000:4000"
     volumes:
     - .:/app
+
+# TODO IDEAS: Put nginx in front of it? Add postgres?
+
+    #########
+    # Usage #
+    #########
+
+    # docker-compose up -d
+
+    # docker-compose down
+
+    # docker logs --follow liveviewtest_webapp_1
