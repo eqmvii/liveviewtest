@@ -1,0 +1,13 @@
+version: '2.0'
+
+# Builds the image from the local docker file
+# exposes app's port 4000 as local host 8000
+# and mounts pwd to /app in the container
+
+services:
+  web:
+    build: .
+    ports:
+    - "8000:4000"
+    volumes:
+    - .:/app

@@ -77,5 +77,3 @@ Hooks.JavaScriptExecuter = {
 window.liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks})
 console.log(liveSocket);
 window.liveSocket.connect();
-
-
